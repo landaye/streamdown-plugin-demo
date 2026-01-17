@@ -88,8 +88,9 @@ Enjoy using Streamdown! 🎉`
 
           <div className="prose prose-blue prose-sm dark:prose-invert dark:prose-blue max-w-none transition-all duration-300">
             <Streamdown
+
               shikiTheme={['github-light', 'github-dark']}
-              className="transition-all duration-300"
+              className="markdown-content transition-all duration-300"
             >
               {markdown}
             </Streamdown>

@@ -4,6 +4,7 @@ import React from 'react';
 import streamdown from './streamdown.tsx';
 //导入css
 import appStyles from './style.css?inline';
+import markdownStyles from './Markdown.css?inline';
 
 export default defineContentScript({
   matches: ['*://*/*'],//匹配所有域名下的页面
@@ -22,10 +23,14 @@ export default defineContentScript({
         const style = document.createElement('style');
         style.textContent = appStyles.toString();
         container.append(style);
+        //注入markdown css
+        const markdownStyle = document.createElement('style');
+        markdownStyle.textContent = markdownStyles.toString();
+        container.append(markdownStyle);
 
         const root = ReactDOM.createRoot(wrapper);
         root.render(React.createElement(streamdown));
-        return { root, wrapper, style };
+        return { root, wrapper, style, markdownStyle };
       },
       onRemove: (elements) => {
         elements?.root.unmount();
